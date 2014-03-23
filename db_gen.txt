@@ -1,0 +1,13 @@
+rails g model User first_name:string last_name:string email:string phone:string password_digest:string --no-assets
+
+rails g model Partner user_id:integer invite_id:integer
+
+rails g model Invite user_id:integer phone:string first_name:string token:string
+
+rails g model Reveal user_id:integer response_id:integer purchased:boolean
+
+rails g model Answer user_id:integer question_id:integer skipped:boolean
+
+rails g model Question text:string
+
+rails g model Option text:string ordinal:integer
