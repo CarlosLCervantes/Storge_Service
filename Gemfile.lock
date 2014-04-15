@@ -30,6 +30,7 @@ GEM
     bcrypt (3.1.7)
     builder (3.1.4)
     columnize (0.3.6)
+    database_cleaner (1.2.0)
     debugger (1.6.6)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
@@ -113,6 +114,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
+  database_cleaner
   debugger
   factory_girl_rails
   jbuilder (~> 1.2)

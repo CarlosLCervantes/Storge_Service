@@ -17,10 +17,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'debugger'
   gem 'factory_girl_rails'
+  gem 'database_cleaner'
 end
-
-
-
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
