@@ -1,3 +1,5 @@
 class Answer < ActiveRecord::Base
-  has_many :options
+  has_one :option
+  belongs_to :question
+  belongs_to :user
 end

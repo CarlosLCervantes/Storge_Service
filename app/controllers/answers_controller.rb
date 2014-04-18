@@ -2,7 +2,7 @@ class AnswersController < ApplicationController
   respond_to :json
   before_filter :setup
   def index
-    respond_with @user.answers
+    respond_with @user.answers.to_json(include: :question)
   end
 
   def show
@@ -26,7 +26,6 @@ class AnswersController < ApplicationController
   def update
     @answer = Answer.update(params[:answer])
     if @answer.save
-      if @answer.save
       respond_with @answer
     else
       respond_with "Bad Data", status: :unprocesible_entity
