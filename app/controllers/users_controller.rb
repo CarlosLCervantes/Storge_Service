@@ -23,15 +23,19 @@ class UsersController < ApplicationController
     end
   end
 
-  def question #gets the next question
+  def next_question #gets the next question
     #Question.where().take(1).first
-    Question.find(:all, 
-      :conditions => ['question_id not in (?)', @user.answers.map( &:id )])
+    #questions = Question.find(:all, 
+    #  :conditions => ['id not in (?)', @user.answers.map( &:id )])
+    #TODO: Holy fuck optimize
+    answers = @user.answers.map { |a| a.ids }
+    questions = Question.where.not(id: answers)
+    respond_with(questions)
   end
 
   private
   def setup
-    @user = User.find_by_id(params[:id])
+    @user = User.find_by_id(params[:user_id])
   end
 
   def save_params

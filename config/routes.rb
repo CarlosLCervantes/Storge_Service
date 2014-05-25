@@ -1,8 +1,10 @@
 Storge::Application.routes.draw do
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :questions, :defaults => { :format => 'json' }
   resources :users, :defaults => { :format => 'json' } do
-    get "question"
+    get "next_question"
     resources :answers, :defaults => { :format => 'json' }
     resources :reveals, :defaults => { :format => 'json' }
     resources :invites, :defaults => { :format => 'json' }
