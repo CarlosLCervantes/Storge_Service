@@ -1,10 +1,11 @@
 Storge::Application.routes.draw do
 
-  resources :questions
-  resources :users do
+  resources :questions, :defaults => { :format => 'json' }
+  resources :users, :defaults => { :format => 'json' } do
     get "question"
-    resources :answers
-    resources :reveals
+    resources :answers, :defaults => { :format => 'json' }
+    resources :reveals, :defaults => { :format => 'json' }
+    resources :invites, :defaults => { :format => 'json' }
   end
 
 end

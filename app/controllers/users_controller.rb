@@ -16,10 +16,10 @@ class UsersController < ApplicationController
   def create
     new_user = User.create(save_params)
     new_user.password_confirmation = new_user.password
-    if new_user.save
-      respond_with(new_user, only: show_params)
+    if new_user.save!
+      respond_with(new_user)
     else
-      respond_with "Error", status: 500
+      respond_with(new_user, status: :error)
     end
   end
 
