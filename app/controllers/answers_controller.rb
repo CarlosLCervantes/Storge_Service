@@ -15,9 +15,9 @@ class AnswersController < ApplicationController
   end
 
   def create
-    @answer = @user.answers.new(params[:answer])
-    if @answer.save
-      respond_with @answer
+    @answer = @user.answers.new(save_params)
+    if @answer.save!
+      render json: @user.next_question.to_json(:include => :options)
     else
       respond_with "Bad Data", status: :unprocesible_entity
     end
@@ -41,6 +41,7 @@ class AnswersController < ApplicationController
   def save_params
     # This says that params[:department] is required, but inside that, only params[:department][:full_name] and 
     # params[:department][:abbreviation] are permitted. Unpermitted params will be stripped out         
-    params.require(:answer).permit(:user_id, :question_id, :skipped)
+    params.require(:answer).permit(:user_id, :question_id, 
+      :option_id, :skipped)
   end
 end

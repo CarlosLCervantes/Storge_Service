@@ -4,6 +4,7 @@ Storge::Application.routes.draw do
   ActiveAdmin.routes(self)
   resources :questions, :defaults => { :format => 'json' }
   resources :users, :defaults => { :format => 'json' } do
+  resource :session, only: [:create], :defaults => { :format => 'json' } do
     get "next_question"
     resources :answers, :defaults => { :format => 'json' }
     resources :reveals, :defaults => { :format => 'json' }

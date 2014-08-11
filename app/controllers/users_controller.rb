@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    new_user = User.create(save_params)
+    new_user = User.new(save_params)
     new_user.password_confirmation = new_user.password
     if new_user.save!
       respond_with(new_user)
@@ -24,13 +24,7 @@ class UsersController < ApplicationController
   end
 
   def next_question #gets the next question
-    #Question.where().take(1).first
-    #questions = Question.find(:all, 
-    #  :conditions => ['id not in (?)', @user.answers.map( &:id )])
-    #TODO: Holy fuck optimize
-    answers = @user.answers.map { |a| a.ids }
-    questions = Question.where.not(id: answers)
-    respond_with(questions)
+    respond_with @user.next_question.to_json(:include => :options)
   end
 
   private

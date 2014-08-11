@@ -11,4 +11,10 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :phone
   validates_presence_of :password_digest
 
+  def next_question
+  	#TODO: Holy fuck optimize
+  	answers = self.answers.map { |a| a.question_id }
+    Question.where.not(id: answers).first
+  end
+
 end
